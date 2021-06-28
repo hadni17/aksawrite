@@ -103,8 +103,29 @@ def predicts():
         print (output)
     elif(output[0] == 12):
         prediction.set("nga")
+        print (output)
+    elif(output[0] == 13):
+        prediction.set("nya")
+        print (output)
+    elif(output[0] == 14):
+        prediction.set("pa")
+        print (output)
+    elif(output[0] == 15):
+        prediction.set("sa")
+        print (output)
+    elif(output[0] == 16):
+        prediction.set("ta")
+        print (output)
+    elif(output[0] == 17):
+        prediction.set("tha")
         print (output) 
-
+    elif(output[0] == 18):
+        prediction.set("wa")
+        print (output)
+    elif(output[0] == 19):
+        prediction.set("ya")
+        print (output)
+   
 btn=Button(window,text="clear",width=15,bg="#FFA800", fg="white",borderwidth=0, command=reset_canvas)
 btn.place(x=50,y=520)
 btn['font'] = myFont
@@ -179,6 +200,27 @@ def save_image(event):
     elif(event.char == "z"):
         img_temp.save(f"nga/{nga}.png")
         nga += 1
+    elif(event.char == "q"):
+        img_temp.save(f"nya/{nya}.png")
+        nya += 1
+    elif(event.char == "p"):
+        img_temp.save(f"pa/{pa}.png")
+        pa += 1
+    elif(event.char == "s"):
+        img_temp.save(f"sa/{sa}.png")
+        sa += 1
+    elif(event.char == "t"):
+        img_temp.save(f"ta/{ta}.png")
+        ta += 1
+    elif(event.char == "a"):
+        img_temp.save(f"tha/{tha}.png")
+        tha += 1
+    elif(event.char == "w"):
+        img_temp.save(f"wa/{wa}.png")
+        wa += 1
+    elif(event.char == "y"):
+        img_temp.save(f"ya/{ya}.png")
+        ya += 1
 
 window.bind("<B1-Motion>", draw_image)
 window.bind("<ButtonPress-1>", start_draw)

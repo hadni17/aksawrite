@@ -17,6 +17,14 @@ def load_dataset():
     la = []
     ma = []
     nga = []
+    nya = []
+    pa =[]
+    sa =[]
+    ta =[]
+    tha =[]
+    wa =[]
+    ya =[]
+
 
     for file in os.listdir("ha"):
         img = Image.open("ha/" + file)
@@ -94,13 +102,56 @@ def load_dataset():
         img = np.array(img)
         img = img.flatten()
         nga.append(img)
+    
+    for file in os.listdir("nya"):
+        img = Image.open("nya/" + file)
+        img = np.array(img)
+        img = img.flatten()
+        nya.append(img)
 
-    return ha, na, ca,ra,ba,ka,ga,da,dha,ja,la,ma,nga
+    for file in os.listdir("pa"):
+        img = Image.open("pa/" + file)
+        img = np.array(img)
+        img = img.flatten()
+        pa.append(img)
+     
+    for file in os.listdir("sa"):
+        img = Image.open("sa/" + file)
+        img = np.array(img)
+        img = img.flatten()
+        sa.append(img)
+    
+    for file in os.listdir("ta"):
+        img = Image.open("ta/" + file)
+        img = np.array(img)
+        img = img.flatten()
+        ta.append(img)
+
+    for file in os.listdir("tha"):
+        img = Image.open("tha/" + file)
+        img = np.array(img)
+        img = img.flatten()
+        tha.append(img)
+    
+    for file in os.listdir("wa"):
+        img = Image.open("wa/" + file)
+        img = np.array(img)
+        img = img.flatten()
+        wa.append(img)
+
+    for file in os.listdir("ya"):
+        img = Image.open("ya/" + file)
+        img = np.array(img)
+        img = img.flatten()
+        ya.append(img)
+
+
+    return ha, na, ca,ra,ba,ka,ga,da,dha,ja,la,ma,nga, nya, pa,sa,ta,tha, wa,ya
 
 def load_ai():
     model = KNeighborsClassifier(n_neighbors=5)
     print("[INFO] Loading Dataset")
-    ha, na, ca, ra , ba, ka, ga,da,dha,ja,la,ma,nga= load_dataset()
+    ha, na, ca, ra , ba, ka, ga,da,dha,ja,la,ma,nga,nya,pa,sa,ta,tha,wa,ya = load_dataset()
     print("[INFO] Loading Model")
     y_ha = np.zeros(len(ha))
     y_na = np.ones(len(na))
@@ -115,8 +166,15 @@ def load_ai():
     y_la = np.ones(len(la))*10
     y_ma = np.ones(len(ma))*11
     y_nga = np.ones(len(nga))*12
-    X = ha + na + ca + ra + ba + ka + ga + da + dha + ja + la + ma + nga
-    y = np.concatenate([y_ha, y_na, y_ca,y_ra,y_ba,y_ka,y_ga,y_da,y_dha,y_ja,y_la,y_ma,y_nga])
+    y_nya = np.ones(len(nya))*13
+    y_pa = np.ones(len(pa))*14
+    y_sa = np.ones(len(sa))*15
+    y_ta = np.ones(len(ta))*16
+    y_tha = np.ones(len(tha))*17
+    y_wa = np.ones(len(wa))*18
+    y_ya = np.ones(len(ya))*19
+    X = ha + na + ca + ra + ba + ka + ga + da + dha + ja + la + ma + nga + nya + pa + sa + ta + tha + wa + ya
+    y = np.concatenate([y_ha, y_na, y_ca,y_ra,y_ba,y_ka,y_ga,y_da,y_dha,y_ja,y_la,y_ma,y_nga,y_nya,y_pa,y_sa,y_ta,y_tha,y_wa,y_ya])
     model.fit(X, y)
    
     return model
