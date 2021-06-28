@@ -110,11 +110,11 @@ def load_ai():
     y_ka = np.ones(len(ka))*5
     y_ga = np.ones(len(ga))*6
     y_da = np.ones(len(da))*7
-    y_dha = np.ones(len(da))*8
-    y_ja = np.ones(len(da))*9
-    y_la = np.ones(len(da))*10
-    y_ma = np.ones(len(da))*11
-    y_nga = np.ones(len(da))*12
+    y_dha = np.ones(len(dha))*8
+    y_ja = np.ones(len(ja))*9
+    y_la = np.ones(len(la))*10
+    y_ma = np.ones(len(ma))*11
+    y_nga = np.ones(len(nga))*12
     X = ha + na + ca + ra + ba + ka + ga + da + dha + ja + la + ma + nga
     y = np.concatenate([y_ha, y_na, y_ca,y_ra,y_ba,y_ka,y_ga,y_da,y_dha,y_ja,y_la,y_ma,y_nga])
     model.fit(X, y)

@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import Widget, font
 from tkinter.constants import N, W
 from typing import Text
+import tkinter.font as font
 import AI
 import numpy as np
 import time
@@ -10,14 +11,21 @@ from PIL import Image, ImageTk, ImageDraw
 
 model = AI.load_ai()
 
+
 window = Tk()
 window.title("Aksawrite")
-window.geometry("1200x600")
-window.configure(bg='#F8F7F7')
+myFont = font.Font(family='Roboto',size=12)
+
+load = Image.open("logo.png")
+load = load.resize((305, 141), Image.ANTIALIAS)
+photo = ImageTk.PhotoImage(load)
+header = Label(window,image=photo,borderwidth=0)
+header.pack(side='top')
+header.place(x=680,y = 60)
 
 img = Image.new(mode="1", size=(450, 450), color=255)
 tkimage = ImageTk.PhotoImage(img)
-canvas = Label(window, image=tkimage)
+canvas = Label(window, image=tkimage,borderwidth=0)
 canvas.pack()
 canvas.place(x=50,y=60)
 draw = ImageDraw.Draw(img)
@@ -78,8 +86,14 @@ def reset_canvas():
     canvas.pack()
     canvas.place(x=50,y=60)
 
-btn=Button(window,text="clear",width=20,bg="#FFA800", fg="white", command=reset_canvas)
+btn=Button(window,text="clear",width=15,bg="#FFA800", fg="white",borderwidth=0, command=reset_canvas)
 btn.place(x=50,y=520)
+btn['font'] = myFont
+
+btn=Button(window,text="Submit",width=15,bg="#FFA800",borderwidth=0, fg="white")
+btn.place(x=356,y=520)
+btn['font'] = myFont
+
 
 
 #create dataset
@@ -92,7 +106,7 @@ ba = 0
 ka = 0
 ga = 0
 ###########
-da = 0
+da = 5
 dha = 0
 ja = 0
 la = 0
@@ -158,4 +172,7 @@ window.bind("<Key>", save_image)
 # label.pack()
 # label.place(x=50,y=60)
 
+
+window.geometry("1200x600")
+window.configure(bg='#F8F7F7')
 window.mainloop()
