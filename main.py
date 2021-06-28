@@ -15,14 +15,16 @@ model = AI.load_ai()
 window = Tk()
 window.title("Aksawrite")
 myFont = font.Font(family='Roboto',size=12)
+myFont2 =font.Font(family='Poplar Std',size=24)
 
 load = Image.open("logo.png")
-load = load.resize((305, 141), Image.ANTIALIAS)
+load = load.resize((203, 94), Image.ANTIALIAS)
 photo = ImageTk.PhotoImage(load)
 header = Label(window,image=photo,borderwidth=0)
 header.pack(side='top')
-header.place(x=680,y = 60)
+header.place(x=750,y = 60)
 
+#buat tempat menulis
 img = Image.new(mode="1", size=(450, 450), color=255)
 tkimage = ImageTk.PhotoImage(img)
 canvas = Label(window, image=tkimage,borderwidth=0)
@@ -31,8 +33,8 @@ canvas.place(x=50,y=60)
 draw = ImageDraw.Draw(img)
 last_point = (0, 0)
 
-# prediction = StringVar()
-# label = Label(window, textvariable=prediction)
+prediction = StringVar()
+label = Label(window, textvariable=prediction)
 
 def draw_image(event):
     global last_point, tkimage,prediction
@@ -44,34 +46,6 @@ def draw_image(event):
     canvas['image'] = tkimage
     canvas.pack()
     canvas.place(x=50,y=60)
-    # img_temp = img.resize((28, 28))
-    # img_temp = np.array(img_temp)
-    # img_temp = img_temp.flatten()
-    # output = model.predict([img_temp])
-    # if(output[0] == 0):
-    #     prediction.set("ha")
-    #     print (output)
-    # elif(output[0] == 1):
-    #     prediction.set("na")
-    #     print (output)
-    # elif(output[0] == 2):
-    #     prediction.set("ca") 
-    #     print (output)  
-    # elif(output[0]==3):
-    #     prediction.set("ra")
-    #     print (output)
-    # elif(output[0] == 4):
-    #     prediction.set("ba")
-    #     print (output) 
-    # elif(output[0] == 5):
-    #     prediction.set("ka") 
-    #     print (output)
-    # elif(output[0] == 6):
-    #     prediction.set("ga")
-    #     print (output) 
-    
-    # label.pack()
-    # label.place(x=50,y=60)
 
 def start_draw(event):
     global last_point
@@ -86,27 +60,70 @@ def reset_canvas():
     canvas.pack()
     canvas.place(x=50,y=60)
 
+def predicts():
+    global prediction
+    img_temp = img.resize((28, 28))
+    img_temp = np.array(img_temp)
+    img_temp = img_temp.flatten()
+    output = model.predict([img_temp])
+    if(output[0] == 0):
+        prediction.set("ha")
+    elif(output[0] == 1):
+        prediction.set("na")
+        print (output) 
+    elif(output[0] == 2):
+        prediction.set("ca")
+        print (output)  
+    elif(output[0]==3):
+        prediction.set("ra")
+        print (output) 
+    elif(output[0] == 4):
+        prediction.set("ba")
+        print (output) 
+    elif(output[0] == 5):
+        prediction.set("ka") 
+        print (output)
+    elif(output[0] == 6):
+        prediction.set("ga")
+        print (output) 
+    elif(output[0] == 7):
+        prediction.set("da")
+        print (output) 
+    elif(output[0] == 8):
+        prediction.set("dha")
+        print (output) 
+    elif(output[0] == 9):
+        prediction.set("ja")
+        print (output)
+    elif(output[0] == 10):
+        prediction.set("la")
+        print (output)
+    elif(output[0] == 11):
+        prediction.set("ma")
+        print (output)
+    elif(output[0] == 12):
+        prediction.set("nga")
+        print (output) 
+
 btn=Button(window,text="clear",width=15,bg="#FFA800", fg="white",borderwidth=0, command=reset_canvas)
 btn.place(x=50,y=520)
 btn['font'] = myFont
 
-btn=Button(window,text="Submit",width=15,bg="#FFA800",borderwidth=0, fg="white")
-btn.place(x=356,y=520)
-btn['font'] = myFont
+btn2=Button(window,text="Submit",width=15,bg="#FFA800",borderwidth=0, fg="white",command=predicts )
+btn2.place(x=356,y=520)
+btn2['font'] = myFont
 
 
 
 #create dataset
-
-ha = 0
-na = 0
-ca = 0
+ha = 13
+na = 13
+ca = 13
 ra = 0
 ba = 0
-ka = 0
-ga = 0
-###########
-da = 5
+ka = 13
+ga = 13
+da = 0
 dha = 0
 ja = 0
 la = 0
@@ -163,15 +180,21 @@ def save_image(event):
         img_temp.save(f"nga/{nga}.png")
         nga += 1
 
-
 window.bind("<B1-Motion>", draw_image)
 window.bind("<ButtonPress-1>", start_draw)
 window.bind("<Key>", save_image)
 
+al=Label(window,text="Prediction ",fg='#FFA800',bg='#F8F7F7')
+al['font'] = myFont
+al.place(x=600,y=230)
 
-# label.pack()
-# label.place(x=50,y=60)
+canvas1=Canvas(window,width=500,height=250,bg='white',highlightbackground='#FFA800')
+canvas1.pack()
+canvas1.place(x=600,y=260)
 
+label.pack()
+label['font'] = myFont2
+label.place(x=50,y=60)
 
 window.geometry("1200x600")
 window.configure(bg='#F8F7F7')
