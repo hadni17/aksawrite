@@ -15,14 +15,15 @@ model = AI.load_ai()
 window = Tk()
 window.title("Aksawrite")
 myFont = font.Font(family='Roboto',size=12)
-myFont2 =font.Font(family='Poplar Std',size=24)
+myFont2 = font.Font(family="Helvetica",size=36,weight="bold")
 
+# logo
 load = Image.open("logo.png")
-load = load.resize((203, 94), Image.ANTIALIAS)
+load = load.resize((305, 142), Image.ANTIALIAS)
 photo = ImageTk.PhotoImage(load)
 header = Label(window,image=photo,borderwidth=0)
 header.pack(side='top')
-header.place(x=750,y = 60)
+header.place(x=700,y = 60)
 
 #buat tempat menulis
 img = Image.new(mode="1", size=(450, 450), color=255)
@@ -34,7 +35,7 @@ draw = ImageDraw.Draw(img)
 last_point = (0, 0)
 
 prediction = StringVar()
-label = Label(window, textvariable=prediction)
+
 
 def draw_image(event):
     global last_point, tkimage,prediction
@@ -231,12 +232,13 @@ al['font'] = myFont
 al.place(x=600,y=230)
 
 canvas1=Canvas(window,width=500,height=250,bg='white',highlightbackground='#FFA800')
+label = Label(window, textvariable=prediction,bg='white')
 canvas1.pack()
 canvas1.place(x=600,y=260)
 
-label.pack()
+label.pack(side='top')
 label['font'] = myFont2
-label.place(x=50,y=60)
+label.place(x=810,y=350)
 
 window.geometry("1200x600")
 window.configure(bg='#F8F7F7')
