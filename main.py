@@ -153,11 +153,11 @@ ma = 0
 nga = 0
 nya = 0
 pa = 10
-sa = 0
-ta = 0
-tha = 0
-wa = 0
-ya = 0
+sa = 14
+ta = 14
+tha = 14
+wa = 14
+ya = 14
 
 def save_image(event):
     global ha,na,ca,ra,ba,ka,ga, da,dha,ja,la,ma,nga,nya,pa,sa,ta,tha,wa,ya
